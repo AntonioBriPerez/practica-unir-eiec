@@ -12,7 +12,7 @@ DEFAULT_ORDER = "asc"  # Orden ascendente por defecto
 
 def sort_list(items, ascending=True):
     if not isinstance(items, list):
-        raise RuntimeError(f"No puede ordenar {type(items)}")
+        raise RuntimeError(f"{type(items)} can't be sorted")
 
     return sorted(items, reverse=(not ascending))
 
@@ -30,7 +30,10 @@ if __name__ == "__main__":
         remove_duplicates = sys.argv[2].lower() == "yes"
         order = sys.argv[3].lower()
     else:
-        print("Uso: <nombre del archivo> <eliminar duplicados: yes/no> <orden: asc/desc>")
+        print("Filename must be indicated as first argument")
+        print("Second arguments asks if you want to remove duplicates")
+
+
         sys.exit(1)
 
     ascending = order == "asc"
@@ -42,7 +45,7 @@ if __name__ == "__main__":
             for line in file:
                 word_list.append(line.strip())
     else:
-        print(f"El fichero {filename} no existe")
+        print(f"File {filename} does not exists")
         word_list = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"]
 
     if remove_duplicates:
